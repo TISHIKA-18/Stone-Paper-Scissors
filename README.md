@@ -20,3 +20,7 @@ This is a simple command-line implementation of the classic game "Stone, Paper, 
 1. Clone this repository:
    ```bash
    git clone https://github.com/yourusername/stone-paper-scissors-python.git
+
+2. Install the required dependencies:
+   ```bash
+   pip install matplotlib

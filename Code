@@ -1,0 +1,48 @@
+This is the main Python script for your project.
+
+import matplotlib.pyplot as plt
+import random
+
+given_choices = ["Stone", "Paper", "Scissor"]
+machine_score = 0
+user_score = 0
+rounds = []
+machine_scores = []
+user_scores = []
+
+while True:
+    user = input("Enter your choice of Stone, Paper, or Scissors (or 'End' to finish): ").capitalize()
+    
+    if user not in ["Stone", "Paper", "Scissor", "End"]:
+        print("Invalid input, please choose Stone, Paper, or Scissors.")
+        continue
+
+    if user == "End":
+        print("The Final Scores are: ")
+        print(f"Machine: {machine_scores[-1] if machine_scores else 0}")
+        print(f"User: {user_scores[-1] if user_scores else 0}")
+
+        plt.plot(rounds, machine_scores, marker='o', label='Machine')
+        plt.plot(rounds, user_scores, marker='o', label='User')
+        plt.xlabel("Rounds")
+        plt.ylabel("Scores")
+        plt.title("Stone, Paper, Scissors!!")
+        plt.legend()
+        plt.show()
+        break
+
+    machine = random.choice(given_choices)
+    print(f"Machine: {machine}")
+
+    if user == machine:
+        print("It's a Tie!!")
+    elif (user == "Stone" and machine == "Scissor") or (user == "Scissor" and machine == "Paper") or (user == "Paper" and machine == "Stone"):
+        print(f"One point given to the user since {user} beats {machine}")
+        user_score += 1
+    else:
+        print(f"One point given to the machine since {machine} beats {user}")
+        machine_score += 1
+
+    rounds.append(len(rounds) + 1)
+    machine_scores.append(machine_score)
+    user_scores.append(user_score)
